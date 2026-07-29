@@ -129,6 +129,66 @@ function textoAutomatico() {
 
 
 // =========================================
+// TERMINAL DO HERO
+// Digita a apresentação em loop.
+// Para mudar o texto, edite as linhas abaixo.
+// =========================================
+
+function iniciarTerminal() {
+    const alvo = document.getElementById("terminal");
+    if (!alvo) return;
+
+    const linhas = [
+        { txt: "> ola, eu sou o",   cor: "#38bdf8" },
+        { txt: "  anderson",        cor: "#38bdf8" },
+        { txt: "",                  cor: "#ffffff" },
+        { txt: "> sites, sistemas",  cor: "#e2e8f0" },
+        { txt: "  e automações",    cor: "#e2e8f0" },
+        { txt: "",                  cor: "#ffffff" },
+        { txt: "> movido a café",   cor: "#94a3b8" },
+        { txt: "",                  cor: "#ffffff" },
+        { txt: "> seja bem-vindo",  cor: "#86efac" }
+    ];
+
+    let linha = 0;
+    let letra = 0;
+    let atual = null;
+
+    function digitar() {
+        // Terminou: limpa e recomeça
+        if (linha >= linhas.length) {
+            setTimeout(() => {
+                alvo.innerHTML = "";
+                linha = 0;
+                letra = 0;
+                digitar();
+            }, 3500);
+            return;
+        }
+
+        if (letra === 0) {
+            atual = document.createElement("div");
+            atual.style.color = linhas[linha].cor;
+            alvo.appendChild(atual);
+        }
+
+        const texto = linhas[linha].txt;
+
+        if (letra < texto.length) {
+            atual.textContent = texto.slice(0, ++letra);
+            setTimeout(digitar, 50);
+        } else {
+            linha++;
+            letra = 0;
+            setTimeout(digitar, texto === "" ? 70 : 450);
+        }
+    }
+
+    digitar();
+}
+
+
+// =========================================
 // EFEITO DE DIGITAÇÃO NO TÍTULO
 // =========================================
 
@@ -427,6 +487,7 @@ function initScrollReveal() {
 document.addEventListener("DOMContentLoaded", () => {
     textoAutomatico();
     efeitoDigitacao();
+    iniciarTerminal();
     initFiltros();
     initScrollReveal();
     initCarrosseisDosCards();
