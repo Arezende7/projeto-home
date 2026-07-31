@@ -1380,9 +1380,36 @@ header {
 
 .hall-wall {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 35px;
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Cada certificado: moldura + legenda */
+
+.cert {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.cert-info {
+    text-align: center;
+}
+
+.cert-info strong {
+    display: block;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.45;
+    margin-bottom: 5px;
+}
+
+.cert-info span {
+    font-size: 13px;
+    color: var(--text-soft);
 }
 
 /* Moldura dos certificados */
@@ -1399,12 +1426,12 @@ header {
     transform: rotate(-1deg);
 }
 
-.frame:nth-child(even) {
+.cert:nth-child(even) .frame {
     transform: rotate(1deg);
 }
 
 .frame:hover {
-    transform: scale(1.15) rotate(0deg);
+    transform: scale(1.08) rotate(0deg);
     z-index: 5;
 }
 
@@ -1423,9 +1450,6 @@ header {
     border-radius: 2px;
 }
 
-.frame.large {
-    grid-row: span 2;
-}
 
 /* =========================================
    CONTATO (RODAPÉ)
